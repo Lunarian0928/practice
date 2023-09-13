@@ -1,6 +1,11 @@
 package com.example.demo.controller; 
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -20,7 +25,7 @@ class AnswerService {
         // 클래스 메서드로 클래스를 정의하면 쓸 수 있는 함수입니다.
         // chatGPT에게 답변을 받아오는 함수입니다.
         ChatGPT chatGPT = ChatGPT.builder()
-            .apiKey("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")
+            .apiKey("")
             .build()
             .init();        
         // github에 올라와있는 https://github.com/PlexPt/chatgpt-java/tree/main를 사용하였습니다.
@@ -36,24 +41,6 @@ class AnswerService {
     }
 }
 
-// class SpotContent { 아직 구현 못했어요 ㅠㅠ 무시하셔도 됩니다.
-//     final String name;
-//     final String oneLineExplanation;
-
-//     SpotContent(String name, String oneLineExplanation){
-//         this.name = name;
-//         this.oneLineExplanation = oneLineExplanation;
-//     } 
-
-//     String getName() {
-//         return name;
-//     }
-
-//     String getOneLineExplanation() {
-//         return oneLineExplanation;
-//     }
-// }
-
 @RestController
 public class GuideController {
     @GetMapping("/guide/{location}")
@@ -62,20 +49,26 @@ public class GuideController {
     // 그런 주소를 만들어줍니다
 
     // 주소에 해당하는 페이지 정보입니다
-    public String getAnswer(@PathVariable("location") String location) {
+    public ArrayList<Map<String, String>> getAnswer(@PathVariable("location") String location) {
         // PathVariable을 통해 {location}, 저걸 가져올 수 있습니다
         // 이게 없다면 /guide/서울, /guide/강릉 .... 엄청 많이 만들어야겠죠?
         
         AnswerService answerService = new AnswerService(location);
         String answer = answerService.requestAnswer();
+        String[] strData = answer.split("[1-9]\\. | 이 외에도");
+        ArrayList<Map<String, String>> spotInfoList = new ArrayList<>();
+        for (int i = 1; i < strData.length - 1; i++)
+        {
+            String[] spotData = strData[i].split(": ");
+            HashMap<String, String> spotInfo = new HashMap<>();
+            
+            spotInfo.put("name", spotData[0]);
+            spotInfo.put("summary", spotData[1]);
 
-        String[] strData = answer.split(". ");
-        for (String str:strData) {
-            if (!str.matches("[0-9].*")) {
-                System.out.println(str);
-            }
+            spotInfoList.add(spotInfo);
         }
-        return answer;    
+        System.out.printf(spotInfoList.toString());
+        
+        return spotInfoList;    
     }
-    
 }
