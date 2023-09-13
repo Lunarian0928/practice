@@ -25,7 +25,7 @@ class AnswerService {
         // 클래스 메서드로 클래스를 정의하면 쓸 수 있는 함수입니다.
         // chatGPT에게 답변을 받아오는 함수입니다.
         ChatGPT chatGPT = ChatGPT.builder()
-            .apiKey("")
+            .apiKey("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")
             .build()
             .init();        
         // github에 올라와있는 https://github.com/PlexPt/chatgpt-java/tree/main를 사용하였습니다.
@@ -52,11 +52,12 @@ public class GuideController {
     public ArrayList<Map<String, String>> getAnswer(@PathVariable("location") String location) {
         // PathVariable을 통해 {location}, 저걸 가져올 수 있습니다
         // 이게 없다면 /guide/서울, /guide/강릉 .... 엄청 많이 만들어야겠죠?
-        
+        System.out.println("Hello");
         AnswerService answerService = new AnswerService(location);
         String answer = answerService.requestAnswer();
         String[] strData = answer.split("[1-9]\\. | 이 외에도");
         ArrayList<Map<String, String>> spotInfoList = new ArrayList<>();
+        
         for (int i = 1; i < strData.length - 1; i++)
         {
             String[] spotData = strData[i].split(": ");

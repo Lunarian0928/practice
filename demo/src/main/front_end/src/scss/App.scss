@@ -1,0 +1,129 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 100;
+  src: url("../assets/font/NotoSansKR-Thin.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 200;
+  src: url("../assets/font/NotoSansKR-ExtraLight.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../assets/font/NotoSansKR-Light.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/font/NotoSansKR-Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/font/NotoSansKR-Medium.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/font/NotoSansKR-Medium.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/font/NotoSansKR-Bold.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../assets/font/NotoSansKR-ExtraBold.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../assets/font/NotoSansKR-Black.ttf") format("ttf");
+}
+
+
+
+
+h1 {
+  font-weight: 700;
+}
+
+#logo {
+  font-weight: 900;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  float: left;
+}
+
+li:after {
+  content: "|"
+}
+
+
+// 레이아웃
+// -------------------------------------------------------
+body {
+  font-family: "Noto Sans KR";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  position: sticky;
+
+  padding: 16px 32px 16px 32px;
+  border-bottom: 1px solid;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+div #planner {
+  padding: 16px 32px 16px 32px;
+}
+
+// -------------------------------------------------------
+
+// 버튼
+// -------------------------------------------------------
+button {
+  font-weight: 700;
+}
+
+#roundRectBtn {
+  width: auto;
+  background: silver;
+  border-radius: 16px;
+}
+// -------------------------------------------------------
+
